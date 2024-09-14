@@ -1,0 +1,224 @@
+/* styles.css */
+body {
+    font-family: 'Figtree', sans-serif;
+    background-color: #f0f4f8; /* Light color for background */
+    color: #333; /* Dark color for text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #007bff; /* Primary color for the logo */
+}
+
+.welcome-container {
+    margin-bottom: 20px;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #007bff; /* Primary color for the title */
+}
+
+.welcome-subtitle {
+    font-size: 1.25rem;
+    margin-top: 10px;
+    color: #666; /* Slightly lighter color for subtitle */
+}
+
+.info-card {
+    background-color: #fff; /* White background for card */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card */
+    max-width: 600px; /* Max width for card */
+    margin: 20px auto; /* Centered horizontally */
+    padding: 20px; /* Padding inside the card */
+    text-align: left; /* Left-aligned text */
+}
+
+.project-info {
+    font-size: 1rem;
+    color: #333; /* Dark color for project info */
+    margin: 0;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff; /* Button color */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px; /* Space above the button */
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: #666; /* Slightly lighter color for footer text */
+}
+
+/* Custom styles for login form */
+.login-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.forgot-password-link {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.remember-me-label {
+    font-size: 0.9rem;
+}
+
+/* Reset basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styling */
+.dashboard-header {
+    background-color: #007bff;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.dashboard-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.dashboard-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-nav ul li a:hover {
+    background-color: #003f8a;
+}
+
+/* Main content container */
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 50px;
+}
+
+.content-section {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.welcome-box h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.welcome-box p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Footer styling */
+.dashboard-footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+

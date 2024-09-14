@@ -1,14 +1,53 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="dashboard-header">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+            <!-- Display the user's name here -->
+            <p class="text-gray-600 mt-2">Welcome, {{ auth()->user()->name }}!</p>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content py-12">
+            <div class="content-container max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <!-- Stats Section -->
+                <div class="stats bg-white shadow-xl rounded-lg p-6 mb-6">
+                    <div class="stats-box">
+                        <h3 class="stats-title">Active Courses</h3>
+                        <p class="stats-value">4</p>
+                    </div>
+                    <div class="stats-box">
+                        <h3 class="stats-title">Completed Courses</h3>
+                        <p class="stats-value">12</p>
+                    </div>
+                    <div class="stats-box">
+                        <h3 class="stats-title">Total Hours</h3>
+                        <p class="stats-value">36 hrs</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activities Section -->
+                <div class="recent-activities bg-white shadow-xl rounded-lg p-6">
+                    <h3 class="section-title">Recent Activities</h3>
+                    <ul class="activity-list">
+                        <li>Started course: "Advanced JavaScript"</li>
+                        <li>Completed module: "React Basics"</li>
+                        <li>Updated profile information</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
