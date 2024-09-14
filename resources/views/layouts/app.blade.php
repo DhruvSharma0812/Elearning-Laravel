@@ -33,9 +33,22 @@
             @endif
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="flex">
+                <!-- Sidebar -->
+                <nav class="sidebar w-64 bg-gray-800 text-white">
+                    <ul class="space-y-2 py-4">
+                        <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Overview</a></li>
+                        <li><a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-700">Courses</a></li>
+                        <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Profile</a></li>
+                        <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Settings</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Main Content Area -->
+                <main class="flex-1 p-6">
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
 
         @stack('modals')
