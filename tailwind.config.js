@@ -9,15 +9,19 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/views/components/**/*.blade.php', // Add custom component paths
+        './resources/js/**/*.js', // If you have JavaScript files that contain Tailwind classes
     ],
+    
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            colors: {
+                'custom-blue': '#1E3A8A', // Adding a custom color as an option
             },
         },
     },
+    
 
     plugins: [forms, typography],
 };

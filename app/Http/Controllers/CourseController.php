@@ -2,30 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\CoursePage;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
+    // Show all courses
     public function index()
     {
-        $courses = Course::all(); // Retrieve all courses
-        return view('courses.index', compact('courses'));
+        $courses = Course::all(); // Fetch all courses from the database
+        return view('courses.index', compact('courses')); // Return the courses view with the data
     }
 
+    // Store a new course in the database
     public function store(Request $request)
     {
-        $request->validate([
+        // Validate the incoming data
+        $validatedData = $request->validate([
             'course_name' => 'required|string|max:255',
-            'course_description' => 'nullable|string',
+            'course_description' => 'required|string|max:1000',
         ]);
 
+        // Create a new course using the validated data
         Course::create([
-            'course_name' => $request->course_name,
-            'course_description' => $request->course_description,
+            'course_name' => $validatedData['course_name'],
+            'course_description' => $validatedData['course_description'],
+            'user_id' => auth()->id(), // Set user_id to the currently authenticated user
         ]);
 
-        return redirect()->route('courses.index');
+        // Redirect back to the courses list with a success message
+        return redirect()->route('courses.index')->with('success', 'Course added successfully!');
     }
 }

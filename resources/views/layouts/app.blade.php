@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="{{ mix('css/fallback.css') }}" rel="stylesheet">
+
 
         <!-- Styles -->
         @livewireStyles
