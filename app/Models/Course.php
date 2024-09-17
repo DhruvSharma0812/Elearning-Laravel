@@ -15,9 +15,11 @@ class Course extends Model
     // Define which attributes are mass assignable
     protected $fillable = ['course_name', 'course_description', 'user_id'];
     // Define the relationship with CoursePage
-    public function pages()
-    {
-        return $this->hasMany(CoursePage::class, 'course_id'); // Ensure 'course_id' is the foreign key in the 'course_pages' table
-    }
+    // In Course.php (Model)
+public function pages()
+{
+    return $this->hasMany(CoursePage::class);
+}
+
 }
 

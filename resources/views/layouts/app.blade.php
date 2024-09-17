@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link href="{{ mix('css/fallback.css') }}" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ mix('css/fallback.css') }}" rel="stylesheet">
 
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+    <!-- Styles -->
+    @livewireStyles
+</head>
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+<body class="font-sans antialiased">
+    <x-banner />
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <div class="min-h-screen bg-gray-100">
+        @livewire('navigation-menu')
 
-            <!-- Page Content -->
-            <div class="flex">
-                <!-- Sidebar -->
-                <nav class="sidebar w-64 bg-gray-800 text-white">
-                    <ul class="space-y-2 py-4">
-                        <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Overview</a></li>
-                        <li><a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-700">Courses</a></li>
-                        <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Profile</a></li>
-                        <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Settings</a></li>
-                    </ul>
-                </nav>
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
 
-                <!-- Main Content Area -->
-                <main class="flex-1 p-6">
-                    {{ $slot }}
-                </main>
-            </div>
+        <!-- Page Content -->
+        <div class="flex">
+            <!-- Sidebar -->
+            <nav class="sidebar w-64 bg-gray-800 text-white">
+                <ul class="space-y-2 py-4">
+                    <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Overview</a></li>
+                    <li><a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-700">Courses</a>
+                    </li>
+                    <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 p-6">
+                {{ $slot }}
+            </main>
         </div>
 
-        @stack('modals')
 
-        @livewireScripts
-    </body>
+    </div>
+
+    @stack('modals')
+
+    @livewireScripts
+</body>
+
 </html>
