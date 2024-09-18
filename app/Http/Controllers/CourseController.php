@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; // validate http request
 use App\Models\Course;
-use App\Models\CoursePage; // Ensure this model is named correctly
-use App\Models\Page;
 
 class CourseController extends Controller
 {
-    // Show all courses
+    // Pagination in course
     public function index()
     {
-        $courses = Course::all(); // Fetch all courses from the database
-        return view('courses.index', compact('courses')); // Return the courses view with the data
+        // Fetch courses with pagination
+        $courses = Course::paginate(5); // 10 courses per page
+        return view('courses.index', compact('courses'));
     }
 
     // Store a new course in the database
@@ -62,17 +61,14 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
 
         // Handle image upload
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-        }
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null;
 
         // Create a new page for the course
         $course->pages()->create([
             'page_title' => $validatedData['page_title'],
             'page_content' => $validatedData['page_content'],
             'image' => $imagePath,
-            'page_number' => $course->pages->count() + 1 // Set page number based on existing pages
+            'page_number' => $course->pages()->count() + 1 // Set page number based on existing pages
         ]);
 
         // Redirect back to the add pages view with a success message
@@ -84,9 +80,9 @@ class CourseController extends Controller
     {
         // Find the course by ID or fail if not found
         $course = Course::findOrFail($id);
-        
+
         // Retrieve all pages for the course
-        $pages = $course->pages;
+        $pages = $course->pages()->orderBy('page_number')->paginate(3);
 
         // Return the play view with the course and its pages
         return view('courses.play', [
@@ -95,49 +91,33 @@ class CourseController extends Controller
         ]);
     }
 
-    public function showPage($course_id, $page_id)
-{
-    // Fetch the current course and all its pages, ordered by ID
-    $course = Course::findOrFail($course_id);
-    $pages = $course->pages()->orderBy('id')->get();
-
-    // Get the current page
-    $currentPage = $pages->where('id', $page_id)->first();
-
-    if (!$currentPage) {
-        abort(404, 'Page not found');
-    }
-
-    // Find the index of the current page
-    $currentIndex = $pages->search($currentPage);
-
-    // Determine the previous and next pages
-    $previousPage = ($currentIndex > 0) ? $pages[$currentIndex - 1] : null;
-    $nextPage = ($currentIndex < count($pages) - 1) ? $pages[$currentIndex + 1] : null;
-
-    // Return the view with course, current page, previousPage, and nextPage
-    return view('courses.page_details', [
-        'course' => $course,
-        'page' => $currentPage,
-        'previousPage' => $previousPage,
-        'nextPage' => $nextPage,
-    ]);
-}
-
-
-
-
     // Show details of a specific page within a course
     public function showPageDetails($course_id, $page_id)
-{
-    $course = Course::findOrFail($course_id);
-    $page = $course->pages()->findOrFail($page_id);
+    {
+        $course = Course::findOrFail($course_id);
+        $page = $course->pages()->findOrFail($page_id);
 
-    // Get the previous and next pages
-    $previousPage = $course->pages()->where('page_number', '<', $page->page_number)->orderBy('page_number', 'desc')->first();
-    $nextPage = $course->pages()->where('page_number', '>', $page->page_number)->orderBy('page_number', 'asc')->first();
+        // Get all pages for the course, ordered by page number
+        $pages = $course->pages()->orderBy('page_number')->get();
 
-    return view('courses.page_details', compact('course', 'page', 'previousPage', 'nextPage'));
-}
+        // Find the index of the current page
+        $currentIndex = $pages->search(fn($item) => $item->id === $page->id);
 
+        // Determine the previous and next pages
+        $previousPage = $currentIndex > 0 ? $pages[$currentIndex - 1] : null;
+        $nextPage = $currentIndex < $pages->count() - 1 ? $pages[$currentIndex + 1] : null;
+
+        // Get the current page number and total pages
+        $currentPage = $currentIndex + 1; // Page numbers typically start from 1
+        $totalPages = $pages->count();
+
+        return view('courses.page_details', [
+            'course' => $course,
+            'page' => $page,
+            'previousPage' => $previousPage,
+            'nextPage' => $nextPage,
+            'currentPage' => $currentPage,
+            'totalPages' => $totalPages
+        ]);
+    }
 }

@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Fetch all courses from the database
-        $courses = Course::all();
+        $courses = Course::paginate(5);
 
         // Pass the courses data to the view
         return view('dashboard', compact('courses'));

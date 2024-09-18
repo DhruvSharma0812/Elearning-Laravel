@@ -1,7 +1,13 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+             <!-- Logo Container -->
+             <div class="flex items-center gap-3 cursor-pointer">
+                    <div class="text-3xl font-bold bg-black text-blue-600 px-4 rounded-full">
+                        JL
+                    </div>
+                    <h1 class="text-3xl font-semibold text-black">JustLearning</h1>
+                </div>
         </x-slot>
 
         <x-validation-errors class="mb-4" />

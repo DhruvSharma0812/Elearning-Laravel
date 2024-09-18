@@ -16,7 +16,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="{{ mix('css/fallback.css') }}" rel="stylesheet">
 
-
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -26,35 +25,33 @@
 
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation-menu')
-
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
         <div class="flex">
             <!-- Sidebar -->
             <nav class="sidebar w-64 bg-gray-800 text-white">
                 <ul class="space-y-2 py-4">
                     <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Overview</a></li>
-                    <li><a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-700">Courses</a>
-                    </li>
+                    <!-- <li><a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-700">Courses</a>
+                    </li> -->
                     <li><a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700">Profile</a></li>
                 </ul>
             </nav>
 
-            <!-- Main Content Area -->
-            <main class="flex-1 p-6">
-                {{ $slot }}
-            </main>
+            <div class="w-full">
+                <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="bg-white shadow-md border-b border-gray-200">
+                        <div class="max-w-7xl mx-auto py-4 px-6 sm:px-8 lg:px-12">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
+
+                <!-- Main Content Area -->
+                <main class="flex-1 p-6">
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
-
-
     </div>
 
     @stack('modals')

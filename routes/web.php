@@ -20,14 +20,8 @@ Route::post('/courses/{id}/store-page', [CourseController::class, 'storePage'])-
 // Route to show details of a specific page within a course
 Route::get('/courses/{course_id}/pages/{page_id}', [CourseController::class, 'showPageDetails'])->name('courses.page_details');
 
-// Route::get('/courses/{course_id}/pages/{page_id}', [CourseController::class, 'showPageDetails'])->name('courses.page_details');
-
-// Route::get('/courses/{course_id}/pages/{page_id}', [CourseController::class, 'showPageDetails'])->name('courses.page_details');
-
 // Route to play a course
 Route::get('/courses/{id}/play', [CourseController::class, 'play'])->name('courses.play');
-
-
 
 // Middleware group for authenticated users
 Route::middleware([
