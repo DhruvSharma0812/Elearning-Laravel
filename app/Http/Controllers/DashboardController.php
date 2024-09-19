@@ -10,8 +10,9 @@ class DashboardController extends Controller
     public function index()
     {
         // Fetch all courses from the database
-        $courses = Course::paginate(5);
-
+        $courses = Course::withCount('pages')->orderBy('created_at', 'desc')
+        ->paginate(5); 
+    
         // Pass the courses data to the view
         return view('dashboard', compact('courses'));
     }

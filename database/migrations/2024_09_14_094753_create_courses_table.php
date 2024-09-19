@@ -10,13 +10,13 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // Nullable user_id
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('course_name');
             $table->text('course_description');
             $table->timestamps();
 
-            // Optional: Add foreign key constraint if user_id references a users table
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            // Add foreign key constraint if user_id references a users table
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

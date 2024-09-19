@@ -12,6 +12,7 @@
                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">S. No.</th>
                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Total Pages</th>
                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $loop->iteration + ($courses->currentPage() - 1) * $courses->perPage() }}</td>
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $course->course_name }}</td>
                         <td class="px-6 py-4 text-sm text-gray-500 min-w-xs max-w-xs">{{ $course->course_description }}</td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $course->pages_count }}</td>
                         <td class="px-6 py-4 text-sm space-x-2">
                             <!-- Add Pages Button -->
                             <a href="{{ route('courses.add_pages', $course->id) }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out">Add Pages</a>
